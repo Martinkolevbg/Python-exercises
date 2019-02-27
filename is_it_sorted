@@ -1,0 +1,4 @@
+n =[raw_input()]
+
+if n == sorted(n): print("sorted")
+else: print("not sorted") 
