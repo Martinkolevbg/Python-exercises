@@ -1,0 +1,61 @@
+from sys import argv
+import string
+
+def find(l, elem):
+    for row, i in enumerate(l):
+        try:
+            column = i.index(elem)
+        except ValueError:
+            continue
+        return row, column
+    return -1
+    
+emotionsbase = ['joy' , 'peace' , 'sad' , 'anger' , 'power' , 'fear' ]
+
+emotions =[
+    [ 'excited\r'  , 'content\r'   , 'bored\r'    , 'selfish\r'  , 'important\r'   , 'confused\r'  ],
+    [ 'sensous\r'  , 'loving\r'    , 'lonely\r'   , 'angry\r'    , 'appreciated\r' , 'rejected\r'  ],
+    [ 'cheerfull\r', 'thoughful\r' , 'depressed\r', 'hurt\r'     , 'faithful\r'    , 'anxious\r'   ],
+    [ 'creative\r' , 'intimate\r'  , 'ashamed\r'  , 'hateful\r'  , 'aware\r'       , 'helpless\r'  ],
+    [ 'energetic\r', 'nurturing\r' , 'tired\r'    , 'critical\r' , 'proud\r'       , 'submissive\r'],
+    [ 'hopeful\r'  , 'trusting\r'  , 'guilty\r'   , 'hostile\r'  , 'respected\r'   , 'insecure\r'  ]
+]
+
+higherEmotions =[
+    [ 'daring\r'      , 'relaxed\r'    , 'apathetic\r' , 'jelous\r'     , 'discerning\r' , 'bewildered\r'    ],
+    [ 'fascinating\r' , 'serene\r'     , 'isolated\r'  , 'frustrated\r' , 'valuable\r'   , 'discouraged\r'   ],
+    [ 'amused\r'      , 'pensive\r'    , 'inferior\r'  , 'distant\r'    , 'confident\r'  , 'overwhelmed\r'   ],
+    [ 'playful\r'     , 'responsive\r' , 'stupid\r'    , 'irritated\r'  , 'suprised\r'   , 'insignificant\r' ],
+    [ 'stimulating\r' , 'thankful\r'   , 'sleepy\r'    , 'skeptical\r'  , 'successful\r' , 'inadequate\r'    ],
+    [ 'optimistic\r'  , 'secure\r'     , 'remosful\r'  , 'sarcastic\r'  , 'worthwhile\r' , 'embarrassed\r'   ]
+]
+
+while true:
+    imp = raw_input("How do you feel?   :")
+    imp.rstrip()
+
+    if imp == 'quit\r':
+        break   
+    if imp == 'joy\r':
+        print "Awesome!!!  Keep up the good work"
+    if imp == 'peace\r':
+        print "Amoung World's..."
+    if imp == 'sad\r':
+        print "Don't cry over spilled milk"
+    if imp == 'anger\r':
+        print "Take a chill pill!"
+    if imp == 'power\r':
+        print "No  one man shoud have all that power!"
+    if imp == 'fear\r':
+        print "Nothing is hiding in the darkness"
+
+    if find(emotions, imp) == -1 and imp != 'joy\r' and imp != 'peace\r' and imp != 'sad\r' and imp != 'anger\r' and imp != 'power\r' and imp != 'fear\r' and find(higherEmotions,imp) == -1:
+        print "Think again..."
+    
+    elif find(emotions, imp) != -1:
+        res = find(emotions, imp)
+        print("%s = %s + %s" % (imp, emotionsbase[res[0]],emotionsbase[res[1]]))
+    elif find(higherEmotions,imp) != -1:
+        res = find(higherEmotions, imp)
+        print(" %s + %s + %s " % (emotionsbase[res[1]],emotionsbase[res[0]], emotionsbase[res[1]]))
+        print("%s which is also  %s + %s" % (imp,emotions[res[0]][res[1]],emotionsbase[res[1]]))
